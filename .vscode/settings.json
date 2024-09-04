@@ -1,4 +1,5 @@
 {
     "git.decorations.enabled": true,
-    "git.enabled": true
+    "git.enabled": true,
+    "css.lint.unknownAtRules": "ignore"
 }
