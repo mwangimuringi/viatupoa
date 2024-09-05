@@ -207,6 +207,7 @@ export default function ProductCreateRoute() {
                   }`}
                   endpoint="productImageUploader"
                   onClientUploadComplete={(res) => {
+                    
                     setImages(res.map((r) => r.url));
                   }}
                   onUploadError={() => {
