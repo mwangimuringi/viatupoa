@@ -201,18 +201,18 @@ export default function ProductCreateRoute() {
                   ))}
                 </div>
               ) : (
-                <UploadDropzone
-                  className={`${
-                    fields.images.errors && "border border-red-500"
-                  }`}
-                  endpoint="productImageUploader"
-                  onClientUploadComplete={(res) => {
-                    setImages(res.map((r) => r.url));
-                  }}
-                  onUploadError={() => {
-                    alert("Something went wrong!");
-                  }}
-                />
+                // <UploadDropzone
+                //   className={`${
+                //     fields.images.errors && "border border-red-500"
+                //   }`}
+                //   endpoint="productImageUploader"
+                //   onClientUploadComplete={(res) => {
+                //     setImages(res.map((r) => r.url));
+                //   }}
+                //   onUploadError={() => {
+                //     alert("Something went wrong!");
+                //   }}
+                // />
               )}
               <p className="text-red-500 text-sm">{fields.images.errors}</p>
             </div>
