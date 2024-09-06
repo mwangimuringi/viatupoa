@@ -1,7 +1,7 @@
 "use client";
 
-// import { createProduct } from "@/app/actions";
-import { UploadDropzone } from "@/app/lib/uploadthing";
+import { createProduct } from "@/app/actions";
+import { UploadDropzone } from @/app/actionsploadthing";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,9 +25,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { ChevronLeft, XIcon } from "lucide-react";
 import Link from "next/link";
 import { useFormState } from "react-dom";
-// import { useForm } from "@conform-to/react";
-// import { parseWithZod } from "@conform-to/zod";
-// import { productSchema } from "@/app/lib/zodSchemas";
+import { useForm } from "@conform-to/react";
+import { productSchema } from "@/app/lib/zodSchema";
+import { parseWithZod } from "@conform-to/zod";
 import { useState } from "react";
 import Image from "next/image";
 // import { categories } from "@/app/lib/categories";
@@ -207,7 +207,6 @@ export default function ProductCreateRoute() {
                   }`}
                   endpoint="productImageUploader"
                   onClientUploadComplete={(res) => {
-                    
                     setImages(res.map((r) => r.url));
                   }}
                   onUploadError={() => {
