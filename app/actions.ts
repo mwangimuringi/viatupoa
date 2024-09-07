@@ -46,7 +46,7 @@ export async function createProduct(prevState: unknown, formData: FormData) {
 
   redirect("/dashboard/products");
 }
-
+ //edit product
 export async function editProduct(prevState: any, formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
