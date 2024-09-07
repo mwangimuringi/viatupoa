@@ -49,13 +49,13 @@ enum Category{
   kids
 }
 
-// model Banner {
-//   id          String @id @default(uuid())
-//   title       String   
-//   image       String
+model Banner {
+  id          String @id @default(uuid())
+  title       String   
+  image       String
   
-//   createdAt   DateTime @default(now())
-// }
+  createdAt   DateTime @default(now())
+}
 
 // model Order {
 //   id          String @id @default(uuid())

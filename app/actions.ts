@@ -7,7 +7,7 @@ import prisma from "./lib/db";
 // import { redis } from "./lib/redis";
 // import { Cart } from "./lib/interfaces";
 import { revalidatePath } from "next/cache";
-import { productSchema } from "./lib/zodSchema";
+import { bannerSchema, productSchema } from "./lib/zodSchema";
 // import { stripe } from "./lib/stripe";
 // import Stripe from "stripe";
 
@@ -105,48 +105,48 @@ export async function deleteProduct(formData: FormData) {
 }
 
 /* ------ Banner Actions ------ */
-// export async function createBanner(prevState: any, formData: FormData) {
-//   const { getUser } = getKindeServerSession();
-//   const user = await getUser();
+export async function createBanner(prevState: any, formData: FormData) {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-//   if (!user || user.email !== "heshmati74@gmail.com") {
-//     return redirect("/");
-//   }
+  if (!user || user.email !== "heshmati74@gmail.com") {
+    return redirect("/");
+  }
 
-//   const submission = parseWithZod(formData, {
-//     schema: bannerSchema,
-//   });
+  const submission = parseWithZod(formData, {
+    schema: bannerSchema,
+  });
 
-//   if (submission.status !== "success") {
-//     return submission.reply();
-//   }
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
 
-//   await prisma.banner.create({
-//     data: {
-//       title: submission.value.title,
-//       image: submission.value.image,
-//     },
-//   });
+  await prisma.banner.create({
+    data: {
+      title: submission.value.title,
+      image: submission.value.image,
+    },
+  });
 
-//   redirect("/dashboard/banner");
-// }
+  redirect("/dashboard/banner");
+}
 
-// export async function deleteBanner(formData: FormData) {
-//   const { getUser } = getKindeServerSession();
-//   const user = await getUser();
+export async function deleteBanner(formData: FormData) {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-//   if (!user || user.email !== "heshmati74@gmail.com") {
-//     return redirect("/");
-//   }
+  if (!user || user.email !== "heshmati74@gmail.com") {
+    return redirect("/");
+  }
 
-//   await prisma.banner.delete({
-//     where: {
-//       id: formData.get("bannerId") as string,
-//     },
-//   });
+  await prisma.banner.delete({
+    where: {
+      id: formData.get("bannerId") as string,
+    },
+  });
 
-//   redirect("/dashboard/banner");
-// }
+  redirect("/dashboard/banner");
+}
 
 /* ------ Shopping Cart Actions ------ */
 // export async function addItem(productId: string) {

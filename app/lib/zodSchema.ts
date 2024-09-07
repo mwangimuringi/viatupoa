@@ -11,6 +11,7 @@ export const productSchema = z.object({
   isFeatured: z.boolean().optional(),
 });
 
+    //banner schema
 export const bannerSchema = z.object({
   title: z.string(),
   image: z.string(),
