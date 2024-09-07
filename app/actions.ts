@@ -79,14 +79,14 @@ export async function editProduct(prevState: any, formData: FormData) {
       status: submission.value.status,
       price: submission.value.price,
       category: submission.value.category,
-      isFeatured: submission.value.isFeatured === true ? true : false,
+      isFeatured: submission.value.isFeatured === true ? true : false, //should be a boolean
       images: flattenUrls,
     },
   });
 
   redirect("/dashboard/products");
 }
-
+ //delete product
 export async function deleteProduct(formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();

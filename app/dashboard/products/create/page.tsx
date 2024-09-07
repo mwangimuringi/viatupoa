@@ -106,8 +106,8 @@ export default function ProductCreateRoute() {
                 name={fields.price.name}
                 defaultValue={fields.price.initialValue}
                 className={`${fields.price.errors && "border border-red-500"}`}
-                placeholder="$5.99"
-                step="0.01"
+                placeholder="300 Ksh"
+                step="10"
               />
               <p className="text-red-500 text-sm">{fields.price.errors}</p>
             </div>
