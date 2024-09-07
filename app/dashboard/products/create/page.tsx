@@ -1,7 +1,7 @@
 "use client";
 
 import { createProduct } from "@/app/actions";
-import { UploadDropzone } from @/app/actionsploadthing";
+import { UploadDropzone } from "@/app/lib/uploadthing";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,8 +30,8 @@ import { productSchema } from "@/app/lib/zodSchema";
 import { parseWithZod } from "@conform-to/zod";
 import { useState } from "react";
 import Image from "next/image";
-// import { categories } from "@/app/lib/categories";
-// import { SubmitButton } from "@/app/components/SubmitButton";
+import { categories } from "@/app/lib/categories";
+import { SubmitButton } from "@/app/components/SubmitButton";
 
 export default function ProductCreateRoute() {
   const [images, setImages] = useState<string[]>([]);

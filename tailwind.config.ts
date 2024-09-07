@@ -1,7 +1,10 @@
 import type { Config } from "tailwindcss";
 import { withUt } from "uploadthing/tw";
 
-const config = {
+// Ensure `@tailwindcss/aspect-ratio` is installed
+// npm install @tailwindcss/aspect-ratio
+
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -75,13 +78,10 @@ const config = {
       },
     },
   },
-  corePlugins: {
-    aspectRatio: false,
-  },
   plugins: [
     require("tailwindcss-animate"),
-    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/aspect-ratio"), // Ensure this is installed
   ],
-} satisfies Config;
+};
 
 export default withUt(config);
