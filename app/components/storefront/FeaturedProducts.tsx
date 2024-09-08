@@ -1,5 +1,5 @@
 import prisma from "@/app/lib/db";
-import {  ProductCard } from "./ProductCard";
+import {  LoadingProductCard, ProductCard } from "./ProductCard";
 import { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
 
@@ -53,9 +53,9 @@ async function LoadFeaturedProducts() {
 function LoadingRows() {
   return (
     <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {/* <LoadingProductCard />
       <LoadingProductCard />
-      <LoadingProductCard /> */}
+      <LoadingProductCard />
+      <LoadingProductCard />
     </div>
   );
 }

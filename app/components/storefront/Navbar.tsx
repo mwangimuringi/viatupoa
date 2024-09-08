@@ -36,7 +36,7 @@ export async function Navbar() {
             >
               <ShoppingBagIcon className="h-6 w-6 text-gray-500 group-hover:text-gray-800" />
               <span className="text-xs font-medium text-white absolute top-0 right-0 bg-primary rounded-full px-1.5 py-0.5">
-                {/* {total} */}
+                {total}
               </span>
             </Link>
 
@@ -44,8 +44,8 @@ export async function Navbar() {
               email={user.email as string}
               name={`${user.given_name} ${user.family_name}` as string}
               userImage={
-                user.picture ?? `https://avatar.vercel.sh/${user.given_name}`
-                // https://github.com/mwangimuringi
+                user.picture ?? `https://github.com/mwangimuringi/${user.given_name}`
+                // https://avatar.vercel.sh
               }
             />
           </>
