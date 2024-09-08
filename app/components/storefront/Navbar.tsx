@@ -5,15 +5,15 @@ import { ShoppingBagIcon } from "lucide-react";
 import { UserDropdown } from "./UserDropdown";
 import { Button } from "@/components/ui/button";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
-// import { redis } from "@/app/lib/redis";
-// import { Cart } from "@/app/lib/interfaces";
+import { Cart } from "@/types/interfaces";
+import { redis } from "@/app/lib/redis";
 
 export async function Navbar() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-//   const cart: Cart | null = await redis.get(`cart-${user?.id}`);
-//   const total = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  const cart: Cart | null = await redis.get(`cart-${user?.id}`);
+  const total = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
   return (
     <nav className="w-full 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
@@ -45,6 +45,7 @@ export async function Navbar() {
               name={`${user.given_name} ${user.family_name}` as string}
               userImage={
                 user.picture ?? `https://avatar.vercel.sh/${user.given_name}`
+                // https://github.com/mwangimuringi
               }
             />
           </>
