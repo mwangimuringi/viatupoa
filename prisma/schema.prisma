@@ -21,7 +21,7 @@ model User {
   lastName     String
   profileImage String
 
-  // orders       Order[]
+  orders       Order[]
   
   createdAt DateTime @default(now())
 }
@@ -57,13 +57,13 @@ model Banner {
   createdAt   DateTime @default(now())
 }
 
-// model Order {
-//   id          String @id @default(uuid())
-//   status      String @default("pending")   
-//   amount      Int
+model Order {
+  id          String @id @default(uuid())
+  status      String @default("pending")   
+  amount      Int
 
-//   User        User? @relation(fields: [userId], references: [id])
-//   userId      String?
+  User        User? @relation(fields: [userId], references: [id])
+  userId      String?
 
-//   createdAt   DateTime  @default(now())
-// }
+  createdAt   DateTime  @default(now())
+}

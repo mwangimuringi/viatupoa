@@ -8,8 +8,8 @@ import { redis } from "./lib/redis";
 import { revalidatePath } from "next/cache";
 import { bannerSchema, productSchema } from "./lib/zodSchema";
 import { Cart } from "@/types/interfaces";
-import { paypal } from "./lib/paypal";
-// import Stripe from "stripe";
+import { stripe } from "./lib/stripe";
+import Stripe from "stripe";
 
 /* ------ Product Actions ------ */
 export async function createProduct(prevState: unknown, formData: FormData) {
@@ -254,10 +254,10 @@ export async function checkOut() {
   let cart: Cart | null = await redis.get(`cart-${user.id}`);
 
   if (cart && cart.items) {
-    const lineItems: PayPal.Checkout.SessionCreateParams.LineItem[] =
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] =
       cart.items.map((item) => ({
         price_data: {
-          currency: "Ksh",
+          currency: "usd",
           unit_amount: item.price * 100,
           product_data: {
             name: item.name,
@@ -267,11 +267,19 @@ export async function checkOut() {
         quantity: item.quantity,
       }));
 
-    const session = await paypal.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
       success_url: "http://localhost:3000/payment/success",
       cancel_url: "http://localhost:3000/payment/cancel",
+      // success_url:
+      //   process.env.NODE_ENV === "development"
+      //     ? "http://localhost:3000/payment/success"
+      //     : "https://myshoe.vercel.app/payment/success",
+      // cancel_url:
+      //   process.env.NODE_ENV === "development"
+      //     ? "http://localhost:3000/payment/cancel"
+      //     : "https://myshoe.vercel.app/payment/cancel",
       metadata: {
         userId: user.id,
       },

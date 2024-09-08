@@ -1,22 +1,22 @@
 import prisma from "@/app/lib/db";
 import { redis } from "@/app/lib/redis";
+import { stripe } from "@/app/lib/stripe";
 import { headers } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
-import { paypal } from "@/app/lib/paypal";
 
 export async function POST(req: Request) {
   noStore();
   const body = await req.text();
 
-  const signature = headers().get("PayPal-Signature") as string;
+  const signature = headers().get("Stripe-Signature") as string;
 
   let event;
 
   try {
-    event = paypal.webhooks.constructEvent(
+    event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.PAYPAL_SECRET_CLIENT as string
+      process.env.STRIPE_SECRET_WEBHOOK as string
     );
   } catch (error: unknown) {
     return new Response("Webhook Error", { status: 400 });
