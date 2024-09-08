@@ -1,5 +1,6 @@
 
 import { CategorySelection } from "../components/storefront/CategorySelection";
+import { FeaturedProducts } from "../components/storefront/FeaturedProducts";
 import { Hero } from "../components/storefront/Hero";
 
 export default function IndexPage() {
@@ -7,7 +8,7 @@ export default function IndexPage() {
     <div>
       <Hero />
       <CategorySelection />
-      {/* <FeaturedProducts /> */}
+      <FeaturedProducts />
     </div>
   );
 }

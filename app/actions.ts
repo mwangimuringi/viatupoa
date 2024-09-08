@@ -8,7 +8,7 @@ import { redis } from "./lib/redis";
 import { revalidatePath } from "next/cache";
 import { bannerSchema, productSchema } from "./lib/zodSchema";
 import { Cart } from "@/types/interfaces";
-// import { stripe } from "./lib/stripe";
+import { paypal } from "./lib/paypal";
 // import Stripe from "stripe";
 
 /* ------ Product Actions ------ */
@@ -46,7 +46,7 @@ export async function createProduct(prevState: unknown, formData: FormData) {
 
   redirect("/dashboard/products");
 }
- //edit product
+//edit product
 export async function editProduct(prevState: any, formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -86,7 +86,7 @@ export async function editProduct(prevState: any, formData: FormData) {
 
   redirect("/dashboard/products");
 }
- //delete product
+//delete product
 export async function deleteProduct(formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -193,7 +193,6 @@ export async function addItem(productId: string) {
   } else {
     let itemFound = false;
 
-
     myCart.items = cart.items.map((item) => {
       if (item.id === productId) {
         itemFound = true;
@@ -244,46 +243,40 @@ export async function deleteItem(formData: FormData) {
 }
 
 /* ------ Payment Actions ------ */
-// export async function checkOut() {
-//   const { getUser } = getKindeServerSession();
-//   const user = await getUser();
+export async function checkOut() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-//   if (!user) {
-//     return redirect("/");
-//   }
+  if (!user) {
+    return redirect("/");
+  }
 
-//   let cart: Cart | null = await redis.get(`cart-${user.id}`);
+  let cart: Cart | null = await redis.get(`cart-${user.id}`);
 
-//   if (cart && cart.items) {
-//     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] =
-//       cart.items.map((item) => ({
-//         price_data: {
-//           currency: "usd",
-//           unit_amount: item.price * 100,
-//           product_data: {
-//             name: item.name,
-//             images: [item.image],
-//           },
-//         },
-//         quantity: item.quantity,
-//       }));
+  if (cart && cart.items) {
+    const lineItems: PayPal.Checkout.SessionCreateParams.LineItem[] =
+      cart.items.map((item) => ({
+        price_data: {
+          currency: "Ksh",
+          unit_amount: item.price * 100,
+          product_data: {
+            name: item.name,
+            images: [item.image],
+          },
+        },
+        quantity: item.quantity,
+      }));
 
-//     const session = await stripe.checkout.sessions.create({
-//       mode: "payment",
-//       line_items: lineItems,
-//       success_url:
-//         process.env.NODE_ENV === "development"
-//           ? "http://localhost:3000/payment/success"
-//           : "https://myshoe.vercel.app/payment/success",
-//       cancel_url:
-//         process.env.NODE_ENV === "development"
-//           ? "http://localhost:3000/payment/cancel"
-//           : "https://myshoe.vercel.app/payment/cancel",
-//       metadata: {
-//         userId: user.id,
-//       },
-//     });
+    const session = await paypal.checkout.sessions.create({
+      mode: "payment",
+      line_items: lineItems,
+      success_url: "http://localhost:3000/payment/success",
+      cancel_url: "http://localhost:3000/payment/cancel",
+      metadata: {
+        userId: user.id,
+      },
+    });
 
-//     return redirect(session.url as string);
-  // }
-// }
+    return redirect(session.url as string);
+  }
+}
