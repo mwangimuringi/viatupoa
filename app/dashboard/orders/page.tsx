@@ -1,4 +1,4 @@
-// import prisma from "@/app/lib/db";
+import prisma from "@/app/lib/db";
 import {
     Card,
     CardContent,
@@ -17,26 +17,26 @@ import {
   import { unstable_noStore as noStore } from "next/cache";
   
   async function getData() {
-  //   const data = await prisma.order.findMany({
-  //     select: {
-  //       id: true,
-  //       status: true,
-  //       amount: true,
-  //       createdAt: true,
-  //       User: {
-  //         select: {
-  //           firstName: true,
-  //           email: true,
-  //           profileImage: true,
-  //         },
-  //       },
-  //     },
-  //     orderBy: {
-  //       createdAt: "desc",
-  //     },
-  //   });
+    const data = await prisma.order.findMany({
+      select: {
+        id: true,
+        status: true,
+        amount: true,
+        createdAt: true,
+        User: {
+          select: {
+            firstName: true,
+            email: true,
+            profileImage: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
   
-  //   return data;
+    return data;
   }
   
   export default async function OrdersPage() {
@@ -61,7 +61,7 @@ import {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {/* {data.map((item) => (
+              {data.map((item) => (
                 <TableRow key={item.id}>
                   <TableCell>
                     <p className="font-medium">{item.User?.firstName}</p>
@@ -78,7 +78,7 @@ import {
                     ${new Intl.NumberFormat("en-US").format(item.amount / 100)}
                   </TableCell>
                 </TableRow>
-              ))} */}
+              ))}
             </TableBody>
           </Table>
         </CardContent>

@@ -5,7 +5,6 @@ import { buttonProps } from "@/types";
 import { Loader2, ShoppingBag, Trash2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
-
 export function SubmitButton({ text, variant }: buttonProps) {
   const { pending } = useFormStatus();
 

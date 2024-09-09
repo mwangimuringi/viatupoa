@@ -1,5 +1,8 @@
 {
     "git.decorations.enabled": true,
     "git.enabled": true,
-    "css.lint.unknownAtRules": "ignore"
+    "css.lint.unknownAtRules": "ignore",
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\Users\\julius;${env:PATH}"
+    }
 }
