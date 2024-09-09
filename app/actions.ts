@@ -270,16 +270,14 @@ export async function checkOut() {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
-      success_url: "http://localhost:3000/payment/success",
-      cancel_url: "http://localhost:3000/payment/cancel",
-      // success_url:
-      //   process.env.NODE_ENV === "development"
-      //     ? "http://localhost:3000/payment/success"
-      //     : "https://myshoe.vercel.app/payment/success",
-      // cancel_url:
-      //   process.env.NODE_ENV === "development"
-      //     ? "http://localhost:3000/payment/cancel"
-      //     : "https://myshoe.vercel.app/payment/cancel",
+      success_url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/payment/success"
+          : "https://viatupoa.vercel.app/payment/success",
+      cancel_url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3000/payment/cancel"
+          : "https://viatupoa.vercel.app/payment/cancel",
       metadata: {
         userId: user.id,
       },
