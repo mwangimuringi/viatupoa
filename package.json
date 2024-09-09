@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prisma-generate": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npm run prisma-generate"
+    "postinstall": "prisma generate" 
   },
   "dependencies": {
     "@conform-to/react": "^1.1.5",
