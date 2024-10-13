@@ -21,7 +21,7 @@ export default async function DashboardLayout({ children,}: {  children: ReactNo
     const { getUser } = getKindeServerSession(); //async won't be safe in next js 13 and below
     const user = await getUser();
 
-    if (!user || user.email !== "") {
+    if (!user || user.email !== "mwangimuringi13@gmail.com") {
       return redirect("/");
     }
 
