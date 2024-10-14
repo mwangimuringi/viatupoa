@@ -36,6 +36,9 @@ export function ProductCard({ item }: iAppProps) {
                 />
               </div>
             </CarouselItem>
+
+
+
           ))}
         </CarouselContent>
         <CarouselPrevious className="ml-14" />
