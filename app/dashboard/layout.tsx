@@ -16,14 +16,18 @@ import { redirect } from "next/navigation";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { unstable_noStore as noStore } from "next/cache";
 
-export default async function DashboardLayout({ children,}: {  children: ReactNode;}) {
-    noStore();
-    const { getUser } = getKindeServerSession(); //async won't be safe in next js 13 and below
-    const user = await getUser();
+export default async function DashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  noStore();
+  const { getUser } = getKindeServerSession(); //async won't be safe in next js 13 and below
+  const user = await getUser();
 
-    if (!user || user.email !== "") {
-      return redirect("/");
-    }
+  // if (!user || user.email !== "mwangimuringi13@gmail.com") {
+  //   return redirect("/");
+  // }
 
   return (
     <div className="flex w-full flex-col 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
