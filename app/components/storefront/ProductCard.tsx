@@ -17,6 +17,7 @@ interface iAppProps {
     description: string;
     price: number;
     images: string[];
+    title: string;
   };
 }
 
