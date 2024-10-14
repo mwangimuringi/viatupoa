@@ -16,9 +16,9 @@ export async function createProduct(prevState: unknown, formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user.email !== "mwangimuringi13@gmail.com") {
-    return redirect("/");
-  }
+  // if (!user || user.email !== "mwangimuringi10@gmail.com") {
+  //   return redirect("/");
+  // }
 
   const submission = parseWithZod(formData, {
     schema: productSchema,
@@ -51,9 +51,9 @@ export async function editProduct(prevState: any, formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user.email !== "mwangimuringi13@gmail.com") {
-    return redirect("/");
-  }
+  // if (!user || user.email !== "mwangimuringi10@gmail.com") {
+  //   return redirect("/");
+  // }
 
   const submission = parseWithZod(formData, {
     schema: productSchema,
@@ -91,9 +91,9 @@ export async function deleteProduct(formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user.email !== "mwangimuringi13@gmail.com") {
-    return redirect("/");
-  }
+  // if (!user || user.email !== "mwangimuringi10@gmail.com") {
+  //   return redirect("/");
+  // }
 
   await prisma.product.delete({
     where: {
@@ -109,9 +109,9 @@ export async function createBanner(prevState: any, formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user.email !== "mwangimuringi13@gmail.com") {
-    return redirect("/");
-  }
+  // if (!user || user.email !== "mwangimuringi10@gmail.com") {
+  //   return redirect("/");
+  // }
 
   const submission = parseWithZod(formData, {
     schema: bannerSchema,
@@ -135,9 +135,9 @@ export async function deleteBanner(formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user.email !== "mwangimuringi13@gmail.com") {
-    return redirect("/");
-  }
+  // if (!user || user.email !== "mwangimuringi10@gmail.com") {
+  //   return redirect("/");
+  // }
 
   await prisma.banner.delete({
     where: {
