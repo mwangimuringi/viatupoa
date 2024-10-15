@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { NavbarLinks } from "./NavbarLinks";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ShoppingBagIcon } from "lucide-react";
 import { UserDropdown } from "./UserDropdown";
@@ -10,6 +9,11 @@ import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Cart } from "@/types/interfaces";
 import { redis } from "@/app/lib/redis";
 import { useState } from "react";
+import CloseIcon from "@/public/icons/close-icon";
+import HamburgerIcon from "@/public/icons/hamburger";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
+import NavbarLinks from "./NavbarLinks";
 
 export async function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -39,16 +43,17 @@ export async function Navbar() {
 
         <div className="flex-1 flex justify-center py-3 md:py-5 md:justify-start">
           <Link href="/" className="flex items-center text-2xl font-extrabold">
-            <Image src={Logo} alt="Logo" width={50} height={50} />
-          </Link>
+          <h1 className="text-black font-bold text-xl lg:text-3xl">
+            Viatu<span className="text-primary">Poa</span>
+          </h1>       
+             </Link>
         </div>
 
         <div className="hidden md:flex space-x-6">
-          <NavLinks onClick={handleCloseNavbar} />
+          <NavbarLinks onClick={handleCloseNavbar} />
         </div>
 
         <div className="flex items-center md:ml-auto space-x-2 ">
-          <ThemeToggle />
           <div className="relative">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -91,7 +96,7 @@ export async function Navbar() {
       </div>
 
       <div className={`md:hidden ${navbar ? "block bg-white" : "hidden"} p-4`}>
-        <NavLinks onClick={handleCloseNavbar} />
+        <NavbarLinks onClick={handleCloseNavbar} />
       </div>
     </nav>
   );
