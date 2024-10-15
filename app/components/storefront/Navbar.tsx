@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { NavbarLinks } from "./NavbarLinks";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -7,59 +9,89 @@ import { Button } from "@/components/ui/button";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Cart } from "@/types/interfaces";
 import { redis } from "@/app/lib/redis";
+import { useState } from "react";
 
 export async function Navbar() {
+  const [navbar, setNavbar] = useState(false);
+
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   const cart: Cart | null = await redis.get(`cart-${user?.id}`);
   const total = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  
+  const handleCloseNavbar = () => {
+    setNavbar(false);
+  };
 
   return (
-    <nav className="w-full 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
-      <div className="flex items-center">
-        <Link href="/">
-          <h1 className="text-black font-bold text-xl lg:text-3xl">
-            Viatu<span className="text-primary">Poa</span>
-          </h1>
-        </Link>
+    <nav className="w-full fixed top-0 left-0 z-50 bg-gray-100 shadow-md h-20">
+      <div className="flex justify-between items-center px-4 mx-auto lg:max-w-7xl md:px-8 ">
+        <div className="md:hidden">
+          <button
+            aria-label={navbar ? "Close menu" : "Open menu"}
+            onClick={() => setNavbar(!navbar)}
+            className="p-2 rounded-md text-gray-700 outline-none focus:border-gray-400"
+          >
+            {navbar ? <CloseIcon /> : <HamburgerIcon />}
+          </button>
+        </div>
+
+        <div className="flex-1 flex justify-center py-3 md:py-5 md:justify-start">
+          <Link href="/" className="flex items-center text-2xl font-extrabold">
+            <Image src={Logo} alt="Logo" width={50} height={50} />
+          </Link>
+        </div>
+
+        <div className="hidden md:flex space-x-6">
+          <NavLinks onClick={handleCloseNavbar} />
+        </div>
+
+        <div className="flex items-center md:ml-auto space-x-2 ">
+          <ThemeToggle />
+          <div className="relative">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="mt-2 min-w-[80px] bg-white shadow-lg rounded-lg">
+                <div className="flex flex-col items-center">
+                  <DropdownMenuItem>
+                    <Link
+                      href="/sign-in"
+                      className="flex items-center space-x-2 text-center"
+                    >
+                      <span>Sign in</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/profile"
+                      className="flex items-center space-x-2 text-center"
+                    >
+                      <span>Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/logout"
+                      className="flex items-center space-x-2 text-center"
+                    >
+                      <span>Logout</span>
+                    </Link>
+                  </DropdownMenuItem>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
       </div>
 
-      <NavbarLinks />
-
-      <div className="flex items-center">
-        {user ? (
-          <>
-            <Link
-              href="/cart"
-              className="group p-2 flex items-center mt-1 mr-4 relative"
-            >
-              <ShoppingBagIcon className="h-6 w-6 text-gray-500 group-hover:text-gray-800" />
-              <span className="text-xs font-medium text-white absolute top-0 right-0 bg-primary rounded-full px-1.5 py-0.5">
-                {total}
-              </span>
-            </Link>
-
-            <UserDropdown
-              email={user.email as string}
-              name={`${user.given_name} ${user.family_name}` as string}
-              userImage={
-                user.picture ?? `https://github.com/mwangimuringi/${user.given_name}`
-                // https://avatar.vercel.sh
-              }
-            />
-          </>
-        ) : (
-          <div className="hidden md:flex md:flex-1 md:items-center md:justify-end md:space-x-2">
-            <Button asChild variant="ghost">
-              <LoginLink>Sign in</LoginLink>
-            </Button>
-            <span className="h-6 w-px bg-gray-200"></span>
-            <Button asChild variant="ghost">
-              <RegisterLink>Create account</RegisterLink>
-            </Button>
-          </div>
-        )}
+      <div className={`md:hidden ${navbar ? "block bg-white" : "hidden"} p-4`}>
+        <NavLinks onClick={handleCloseNavbar} />
       </div>
     </nav>
   );
