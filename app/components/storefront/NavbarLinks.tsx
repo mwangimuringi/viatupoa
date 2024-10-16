@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 interface NavbarLinksProps {
-  onClick: () => void; // Function to handle link clicks
+  onClick: () => void; 
 }
 
 const navbarLinks = [
@@ -20,19 +21,35 @@ const navbarLinks = [
 export function NavbarLinks({ onClick }: NavbarLinksProps) {
   const location = usePathname();
 
+  // Automatically close the sidebar on large screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        onClick(); // Close the sidebar when the screen is larger than md (768px)
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener when component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [onClick]);
+
   return (
-    <ul className="h-screen md:h-auto items-center justify-center md:flex md:space-y-0 space-y-6">
+    <ul className="h-screen md:h-auto items-center justify-center md:flex space-y-6 md:space-y-0 overflow-y-auto md:overflow-visible">
       {navbarLinks.map((item) => (
         <li
           key={item.id}
-          className="pb-6 md:pb-0 py-2 px-6 text-center text-slate-400 cursor-pointer text-xl border-b-2 md:border-b-0 hover:bg-gray-300 border-yellow-200 md:hover:text-slate-600 md:hover:bg-transparent"
+          className="pb-2 md:pb-0 px-6 text-center text-slate-500 cursor-pointer text-lg border-b-2 md:border-b-0"
         >
           <Link
             href={item.href}
-            onClick={onClick} // Call onClick when link is clicked
+            onClick={onClick} 
             className={cn(
-              location === item.href ? "bg-muted" : "hover:bg-muted",
-              "group p-2 font-medium rounded-md"
+              location === item.href ? "bg-slate-50" : "hover:bg-slate-50",
+              "group p-2 font-medium rounded-md md:hover:underline md:hover:text-blue-600 hover:underline hover:text-blue-600"
             )}
           >
             <span className="flex-1">{item.name}</span>

@@ -1,14 +1,12 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
 import { NavbarLinks } from "./NavbarLinks";
 import CloseIcon from "@/public/icons/close-icon";
 
 export function Sidenav({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     return (
       <div
-        className={`inset-0 transition-opacity duration-300 ease-in-out ${
+        className={`inset-0 transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -21,7 +19,7 @@ export function Sidenav({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
           <NavbarLinks onClick={onClose} />
         </div>
         <div
-          className={`fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          className={`fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
           onClick={onClose}
         />
       </div>
