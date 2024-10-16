@@ -38,9 +38,9 @@ export function NavbarLinks({ onClick }: NavbarLinksProps) {
   }, [onClick]);
 
   return (
-    <ul className="h-screen md:h-auto items-center justify-center md:flex space-y-6 md:space-y-0 overflow-y-auto md:overflow-visible">
+    <div className="h-screen md:h-auto items-center justify-center md:flex space-y-6 md:space-y-0 overflow-y-auto md:overflow-visible">
       {navbarLinks.map((item) => (
-        <li
+        <div
           key={item.id}
           className="pb-2 md:pb-0 px-6 text-center text-slate-500 cursor-pointer text-lg border-b-2 md:border-b-0"
         >
@@ -54,8 +54,8 @@ export function NavbarLinks({ onClick }: NavbarLinksProps) {
           >
             <span className="flex-1">{item.name}</span>
           </Link>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
