@@ -75,9 +75,9 @@ export default async function BannerRoute() {
                     <Image
                       src={item.image}
                       alt="Banner Image"
-                      width={64}
-                      height={64}
-                      className="rounded-lg object-cover h-16 w-16"
+                      width={1920} // Set large size for big screens
+                      height={1080} // Set large height
+                      className="rounded-lg object-cover w-full h-auto sm:w-16 sm:h-16" // Responsive for small screens
                     />
                   </TableCell>
                   <TableCell className="font-medium">{item.title}</TableCell>
