@@ -35,3 +35,45 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # viatupoa
+Ensure you have the following installed
+
+- Node.js
+- npm
+- yarn
+- pnpm
+- bun
+
+# Getting Started
+
+1. Clone the repo
+2. Run `npm install` or `yarn install` or `pnpm install` or `bun install`
+3. Run `npm run dev` or `yarn dev` or `pnpm dev` or `bun dev`
+4. Open http://localhost:3000 in your browser
+
+# Features
+
+## UploadThing
+
+This is a file uploading library that allows you to upload files to your server. It is built on top of Next.js and React.
+
+### Features
+
+- File Uploading
+- File Uploading with Progress
+- File Uploading with Preview
+- File Uploading with Metadata
+- File Uploading with Multiple Files
+- File Uploading with File Types             
+- File Uploading with File Size Limits
+- File Uploading with Custom File Types
+- File Uploading with Custom File Size Limits
+- File Uploading with Custom Metadata
+- File Uploading with Custom Middleware
+- File Uploading with Client-Side Callbacks
+- File Uploading with Server-Side Callbacks
+- File Uploading with Uploading Queues
+- File Uploading with Uploading Queues with Progress
+- File Uploading with Uploading Queues with Preview
+- File Uploading with Uploading Queues with Metadata
+- File Uploading with Uploading Queues with Multiple Files
+- File Uploading with Uploading Queues with File Types                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
