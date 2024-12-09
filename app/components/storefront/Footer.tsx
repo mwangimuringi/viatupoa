@@ -1,9 +1,16 @@
-import { footerLinks } from "@/constants";
+import { footerLinks } from "@/constants";  // Assuming this is where footerLinks is defined
 import Link from "next/link";
 
+// Define the type for individual link items
+type LinkProps = {
+  name: string;  // Link name, e.g. "Terms of Service"
+  path: string;  // Path for the link, e.g. "/terms-of-service"
+};
+
+// Define the type for the column props
 type ColumnProps = {
-  title: string;
-  links: Array<string>;
+  title: string;  // Title of the column, e.g. "Legal"
+  links: LinkProps[];  // Array of LinkProps (name and path)
 };
 
 const FooterColumn = ({ title, links }: ColumnProps) => (
@@ -11,8 +18,8 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
     <h4 className="font-semibold text-lg mb-4">{title}</h4>
     <ul className="flex flex-col gap-2">
       {links.map((link) => (
-        <Link href="/" key={link} className="text-gray-700 hover:text-black">
-          {link}
+        <Link href={link.path} key={link.name} className="text-gray-700 hover:text-black">
+          {link.name}  {/* Display the link's name */}
         </Link>
       ))}
     </ul>
@@ -29,7 +36,7 @@ export const Footer = () => (
             <FooterColumn
               key={index}
               title={category.title}
-              links={category.links}
+              links={category.links}  // Pass the links with both name and path
             />
           ))}
         </div>
