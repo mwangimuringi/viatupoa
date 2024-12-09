@@ -27,10 +27,10 @@ export const footerLinks = [
     title: 'About Viatupoa',
     links: [
       { name: 'Our Story', path: '/about/our-story' },
-      { name: 'Careers', path: '/careers' },
-      { name: 'Sustainability', path: '/sustainability' },
-      { name: 'Press', path: '/press' },
-      { name: 'Customer Testimonials', path: '/testimonials' },
+      { name: 'Careers', path: '/about/careers' },
+      { name: 'Sustainability', path: '/about/sustainability' },
+      { name: 'Press', path: '/about/press' },
+      { name: 'Customer Testimonials', path: '/about/testimonials' },
     ],
   },
   {
@@ -46,8 +46,8 @@ export const footerLinks = [
   {
     title: 'For Businesses',
     links: [
-      { name: 'Vendor Dashboard', path: '/business/vendor-dashboard' },
-      { name: 'Sell with Viatupoa', path: '/business/sell-with-us' },
+      { name: 'Vendor Dashboard', path: '/business/vendor' },
+      { name: 'Sell with Viatupoa', path: '/business/sell' },
       { name: 'Affiliate Program', path: '/business/affiliate' },
       { name: 'Partnerships', path: '/business/partnerships' },
     ],
