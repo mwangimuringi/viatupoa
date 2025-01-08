@@ -15,8 +15,8 @@ export const ourFileRouter = {
       const user = await getUser();
 
       // If you throw, the user will not be able to upload
-      if (!user || user.email !== "mwangimuringi13@gmail.com")
-        throw new UploadThingError("Unauthorized");
+      // if (!user || user.email !== "mwangimuringi13@gmail.com")
+      //   throw new UploadThingError("Unauthorized");
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: user.id };
