@@ -16,54 +16,55 @@ datasource db {
 
 model User {
   id           String @id @unique
-  email        String   
+  email        String
   firstName    String
   lastName     String
   profileImage String
 
-  orders       Order[]
-  
+  orders Order[]
+
   createdAt DateTime @default(now())
 }
 
 model Product {
-  id          String @id @default(uuid())
-  name        String   
+  id          String        @id @default(uuid())
+  name        String
   description String
   status      ProductStatus
   price       Int
   images      String[]
   category    Category
-  isFeatured  Boolean @default(false)
-  
-  createdAt   DateTime @default(now())
+  isFeatured  Boolean       @default(false)
+
+  createdAt DateTime @default(now())
 }
-enum ProductStatus{
+
+enum ProductStatus {
   draft
   published
   archived
 }
-enum Category{
+
+enum Category {
   men
   women
   kids
 }
 
 model Banner {
-  id          String @id @default(uuid())
-  title       String   
-  image       String
-  
-  createdAt   DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  title     String
+  imageUrl  String
+  createdAt DateTime @default(now())
 }
 
 model Order {
-  id          String @id @default(uuid())
-  status      String @default("pending")   
-  amount      Int
+  id     String @id @default(uuid())
+  status String @default("pending")
+  amount Int
 
-  User        User? @relation(fields: [userId], references: [id])
-  userId      String?
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 
-  createdAt   DateTime  @default(now())
+  createdAt DateTime @default(now())
 }
