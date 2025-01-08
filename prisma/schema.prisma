@@ -52,7 +52,7 @@ enum Category{
 model Banner {
   id          String @id @default(uuid())
   title       String   
-  image       String
+  image       String?
   
   createdAt   DateTime @default(now())
 }
