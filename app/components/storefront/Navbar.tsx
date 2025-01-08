@@ -32,7 +32,9 @@ export function Navbar({ user }: NavbarProps) {
       if (user) {
         try {
           const cart: Cart | null = await redis.get(`cart-${user.id}`);
-          setTotal(cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0);
+          setTotal(
+            cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0
+          );
         } catch (error) {
           console.error("Failed to fetch cart:", error);
         } finally {
@@ -62,7 +64,10 @@ export function Navbar({ user }: NavbarProps) {
           </div>
 
           <div className="flex-1 flex justify-center py-3 md:py-5 md:justify-start">
-            <Link href="/" className="flex items-center text-2xl font-extrabold">
+            <Link
+              href="/"
+              className="flex items-center text-2xl font-extrabold"
+            >
               <h1 className="text-black font-bold text-xl lg:text-3xl">
                 Viatu<span className="text-primary">Poa</span>
               </h1>
@@ -76,7 +81,10 @@ export function Navbar({ user }: NavbarProps) {
           <div className="flex items-center md:ml-auto space-x-2">
             {user ? (
               <>
-                <Link href="/cart" className="group p-2 flex items-center mt-1 mr-4 relative">
+                <Link
+                  href="/cart"
+                  className="group p-2 flex items-center mt-1 mr-4 relative"
+                >
                   <ShoppingBagIcon className="h-6 w-6 text-gray-500 group-hover:text-gray-800" />
                   <span className="text-xs font-medium text-white absolute top-0 right-0 bg-primary rounded-full px-1.5 py-0.5">
                     {loading ? "..." : total}
@@ -85,7 +93,9 @@ export function Navbar({ user }: NavbarProps) {
 
                 <UserDropdown
                   email={user.email as string}
-                  name={`${user.given_name ?? "User"} ${user.family_name ?? ""}`.trim()}
+                  name={`${user.given_name ?? "User"} ${
+                    user.family_name ?? ""
+                  }`.trim()}
                   userImage={
                     user.picture ?? "/default-avatar.png" // Fallback image path
                   }
