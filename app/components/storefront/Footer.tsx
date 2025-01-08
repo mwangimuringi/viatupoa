@@ -2,8 +2,8 @@ import { footerLinks } from "@/constants";
 import Link from "next/link";
 
 type LinkProps = {
-  name: string; 
-  path: string; 
+  name: string;
+  path: string;
 };
 
 type ColumnProps = {
@@ -17,8 +17,8 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
     <ul className="flex flex-col gap-2">
       {links.map((link) => (
         <li key={link.name}>
-          <Link href={link.path}>
-            <a className="text-gray-700 hover:text-black">{link.name}</a>
+          <Link href={link.path} className="text-gray-700 hover:text-black">
+            {link.name}
           </Link>
         </li>
       ))}
