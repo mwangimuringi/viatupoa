@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
-    //fetching data
+// Fetching data
 async function getData() {
   const data = await prisma.banner.findMany({
     orderBy: {
@@ -19,7 +19,7 @@ async function getData() {
   return data;
 }
 
-export  async function Hero() {
+export async function Hero() {
   const data = await getData();
 
   return (
@@ -29,7 +29,7 @@ export  async function Hero() {
           <CarouselItem key={item.id}>
             <div className="relative h-[60vh] lg:h-[80vh]">
               <Image
-                src={item.image}
+                src={item.imageUrl} // Updated to use imageUrl
                 alt="Banner Image"
                 className="object-cover w-full h-full rounded-xl"
                 fill
