@@ -111,7 +111,6 @@
 //   );
 // }
 
-
 import Link from "next/link";
 import { NavbarLinks } from "./NavbarLinks";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -126,7 +125,22 @@ export async function Navbar() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  const cart: Cart | null = await redis.get(`cart-${user?.id}`);
+  let cart: Cart | null = null;
+
+  try {
+    const cartData = await redis.get(`cart-${user?.id}`);
+    
+    // Ensure cartData is a string before attempting to parse
+    if (typeof cartData === 'string') {
+      cart = JSON.parse(cartData);
+    } else {
+      cart = null;
+    }
+  } catch (error) {
+    console.error('Error fetching cart from Redis:', error);
+    cart = null;
+  }
+
   const total = cart?.items.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
   return (
