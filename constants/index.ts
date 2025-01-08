@@ -1,74 +1,73 @@
 export const footerLinks = [
-    {
-      title: 'Shop',
-      links: [
-        'Men’s Shoes',
-        'Women’s Shoes',
-        'Kids’ Shoes',
-        'All Sizes',
-        'New Arrivals',
-        'Sale',
-        'Top Brands',
-      ],
-    },
-    {
-      title: 'Brands',
-      links: [
-        'Nike',
-        'Adidas',
-        'Puma',
-        'Reebok',
-        'Vans',
-        'New Balance',
-        'Converse',
-      ],
-    },
-    {
-      title: 'About Viatupoa',
-      links: [
-        'Our Story',
-        'Careers',
-        'Sustainability',
-        'Press',
-        'Customer Testimonials',
-      ],
-    },
-    {
-      title: 'Help & Support',
-      links: [
-        'Shipping & Delivery',
-        'Returns & Exchanges',
-        'FAQs',
-        'Order Status',
-        'Contact Us',
-      ],
-    },
-    {
-      title: 'For Businesses',
-      links: [
-        'Vendor Dashboard',
-        'Sell with Viatupoa',
-        'Affiliate Program',
-        'Partnerships',
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        'Terms of Service',
-        'Privacy Policy',
-        'Cookie Policy',
-        'Data Protection',
-      ],
-    },
-    {
-      title: 'Community',
-      links: [
-        'Refer a Friend',
-        'Events',
-        'Gift Cards',
-        'Influencer Partnerships',
-      ],
-    },
-  ];
-  
+  {
+    title: 'Shop',
+    links: [
+      { name: 'Men’s Shoes', path: '/mens-shoes' },
+      { name: 'Women’s Shoes', path: '/womens-shoes' },
+      { name: 'Kids’ Shoes', path: '/kids-shoes' },
+      { name: 'All Sizes', path: '/all-sizes' },
+      { name: 'New Arrivals', path: '/new-arrivals' },
+      { name: 'Sale', path: '/sale' },
+      { name: 'Top Brands', path: '/top-brands' },
+    ],
+  },
+  {
+    title: 'Brands',
+    links: [
+      { name: 'Nike', path: '/brands/nike' },
+      { name: 'Adidas', path: '/brands/adidas' },
+      { name: 'Puma', path: '/brands/puma' },
+      { name: 'Reebok', path: '/brands/reebok' },
+      { name: 'Vans', path: '/brands/vans' },
+      { name: 'New Balance', path: '/brands/new-balance' },
+      { name: 'Converse', path: '/brands/converse' },
+    ],
+  },
+  {
+    title: 'About Viatupoa',
+    links: [
+      { name: 'Our Story', path: '/about/our-story' },
+      { name: 'Careers', path: '/about/careers' },
+      { name: 'Sustainability', path: '/about/sustainability' },
+      { name: 'Press', path: '/about/press' },
+      { name: 'Customer Testimonials', path: '/about/testimonials' },
+    ],
+  },
+  {
+    title: 'Help & Support',
+    links: [
+      { name: 'Shipping & Delivery', path: '/help/shipping' },
+      { name: 'Returns & Exchanges', path: '/help/returns' },
+      { name: 'FAQs', path: '/help/faqs' },
+      { name: 'Order Status', path: '/help/order-status' },
+      { name: 'Contact Us', path: '/help/contact' },
+    ],
+  },
+  {
+    title: 'For Businesses',
+    links: [
+      { name: 'Vendor Dashboard', path: '/business/vendor' },
+      { name: 'Sell with Viatupoa', path: '/business/sell' },
+      { name: 'Affiliate Program', path: '/business/affiliate' },
+      { name: 'Partnerships', path: '/business/partnerships' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { name: 'Terms of Service', path: '/legal/terms-of-service' },
+      { name: 'Privacy Policy', path: '/legal/privacy-policy' },
+      { name: 'Cookie Policy', path: '/legal/cookie-policy' },
+      { name: 'Data Protection', path: '/legal/data-protection' },
+    ],
+  },
+  {
+    title: 'Community',
+    links: [
+      { name: 'Refer a Friend', path: '/community/refer' },
+      { name: 'Events', path: '/community/events' },
+      { name: 'Gift Cards', path: '/community/gift-cards' },
+      { name: 'Influencer Partnerships', path: '/community/influencers' },
+    ],
+  },
+];

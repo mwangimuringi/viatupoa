@@ -16,19 +16,24 @@ import { redirect } from "next/navigation";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { unstable_noStore as noStore } from "next/cache";
 
+// Ensure async/await is properly handled for server-side code
 export default async function DashboardLayout({
   children,
 }: {
   children: ReactNode;
 }) {
   noStore();
-  const { getUser } = getKindeServerSession(); //async won't be safe in next js 13 and below
-  const user = await getUser();
+  
+  // Await session and user data correctly
+  const { getUser } = getKindeServerSession();
+  const user = await getUser(); // Ensure this is awaited properly
 
-  // if (!user || user.email !== "mwangimuringi13@gmail.com") {
-  //   return redirect("/");
-  // }
+  // Redirect if user is not authenticated
+  if (!user) {
+    return redirect("/login"); // Adjust the redirect path as needed
+  }
 
+  // Continue rendering the layout if user is authenticated
   return (
     <div className="flex w-full flex-col 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
       <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-white">
