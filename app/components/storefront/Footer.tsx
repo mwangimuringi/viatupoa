@@ -1,14 +1,9 @@
 import { footerLinks } from "@/constants";
 import Link from "next/link";
 
-type LinkProps = {
-  name: string;
-  path: string;
-};
-
 type ColumnProps = {
   title: string;
-  links: LinkProps[];
+  links: Array<string>;
 };
 
 const FooterColumn = ({ title, links }: ColumnProps) => (
@@ -16,9 +11,9 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
     <h4 className="font-semibold text-lg mb-4">{title}</h4>
     <ul className="flex flex-col gap-2">
       {links.map((link) => (
-        <li key={link.name}>
-          <a className="text-gray-700 hover:text-black">{link.name}</a>
-        </li>
+        <Link href="/" key={link} className="text-gray-700 hover:text-black">
+          {link}
+        </Link>
       ))}
     </ul>
   </div>
@@ -49,7 +44,7 @@ export const Footer = () => (
             target="_blank"
             className="font-semibold hover:underline"
           >
-            mwangimuringi
+            mwangi muringi
           </Link>
         </p>
         <p>

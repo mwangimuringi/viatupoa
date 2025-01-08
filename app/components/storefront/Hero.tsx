@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
-    //fetching data
+// Fetching data
 async function getData() {
   const data = await prisma.banner.findMany({
     orderBy: {
@@ -19,7 +19,7 @@ async function getData() {
   return data;
 }
 
-export  async function Hero() {
+export async function Hero() {
   const data = await getData();
 
   return (
