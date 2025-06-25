@@ -44,6 +44,8 @@ export function CategorySelection() {
               <h3 className="text-white font-semibold">Men Products</h3>
               <p className="mt-1 text-sm text-white">Shop Now</p>
             </Link>
+
+            
           </div>
         </div>
 
